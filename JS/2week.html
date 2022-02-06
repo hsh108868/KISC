@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        console.log(this);
+
+        function fullName() {
+        }
+
+        var person = {
+            firstName: "John",
+            lastName: "Doe",
+            fullName: function () {
+                return this.firstName + " " + this.lastName;
+            }
+        };
+
+        console.log(person.fullName());
+
+        function myFunction() {
+            console.log(this);
+        }
+
+        myFunction();
+
+        function callFunc(obj) {
+            console.log(obj)
+        }
+
+        function changeSelect(obj) {
+            console.log(obj.value);
+        }
+
+        //Scope = 변수에 대한 접근성
+
+        //localscope
+        function myFunction() {
+            carName = "Hyundai";
+        }
+
+        //global scope
+
+        var carName2 = "KIA";
+
+        function myFunction2() {
+            console.log(carName2);
+        }
+
+        myFunction2();
+
+        function say(message = "파라미터 안 넘어옴") {
+            console.log(message);
+        }
+
+        function plus(x, y = 1) {
+            console.log(x + y);
+        }
+
+        plus(4, 2);
+
+        say("안녕하세요.");
+        say();
+
+        function sum(x1, x2) {
+            var y = x1 + x2;
+            console.log(y);
+
+            return y;
+        }
+
+        sum(5, 7);
+
+        function sum(x1, x2, x3, x4) {
+            var y = x1 + x2 + x3 + x4;
+            console.log(y);
+
+            return y;
+        }
+
+        sum(5, 7, 3, 9);
+
+
+        function sum(...args) {
+            var total = 0;
+
+            args.forEach(function (x, index) {
+                console.log(index);
+                total += x;
+            });
+            console.log(total);
+            return total;
+        }
+
+        sum(3, 2, 5, 7, 4, 23);
+
+        var hello = fullName => "Hello " + fullName;
+
+        console.log(hello("John Doe"));
+
+        var hello = name => console.log("Hello" + name + ". Welcome!");
+
+        var hello2 = name => {
+            var name2 = "Jone";
+
+            console.log(`Hello ${name2}. Welcome! ${name}`);
+        }
+
+        hello2("Jeremy");
+
+        var firstName = "John";
+        var lastName = "Doe";
+
+        var person = {
+            firstName: firstName,
+            lastName: lastName
+        };
+
+        var type = "student";
+
+        var score = {
+            [type]: "John",
+            score: 95
+        };
+
+        var type2 = "grade";
+
+        score[type2] = 1;
+
+        console.log(score);
+
+        var arr1 = [4, 5, 6];
+        var arr2 = [1, 2, 3];
+        var arr3 = [...arr2, ...arr1];
+        console.log(arr3);
+
+        var cd = "CD";
+        var alphabet = ['A', 'B', ...cd];
+        console.log(alphabet);
+
+        function getPerson() {
+            return {
+                firstName: "John",
+                lastName: "Doe",
+                age: 37,
+                email: "john@gmail.com",
+                city: "New York",
+                country: "USA"
+            };
+        }
+
+        var { firstName, lastName } = getPerson();
+        console.log(firstName);
+        console.log(lastName);
+
+        function getScores() {
+            return [70, 80, 90];
+        }
+
+        var scores = getScores();
+        function getLocation() {
+            return [123.12, 23.023];
+        }
+
+        var [latitude, longitude] = getLocation();
+
+        console.log(latitude);
+
+        // var url = `https://0144ece0-2710-4df2-9f58-be69b762ba62.mock.pstmn.io/productList`;
+
+        // function getData() {
+        //     return new Promise(function (resolve, reject) {
+        //         axios.get(url).then(function (response) {
+        //             console.log(response.data);
+        //             resolve(response.data);
+        //         });
+        //     });
+        // }
+
+
+        // var total = 0;
+
+        // getData().then(function (data) {
+        //     for (var item of data) {
+        //         total += item.price;
+        //     }
+
+        //     console.log(total);
+        // });
+
+        // var url = "https://0144ece0-2710-4df2-9f58-be69b762ba62.mock.pstmn.io/productList";
+        // function getData() {
+        //     //promise
+
+        //     return new Promise(function (resolve, reject) {
+        //         axios.get(url).then(function (response) {
+        //             console.log(response.data);
+        //             resolve(response.data);
+        //         });
+        //     });
+        // }
+
+        // async function getData2(path) {
+        //     return (await axios.get(path)).data;
+        // }
+
+        // async function calculateSum() {
+        //     var data = await getData2(url);
+
+
+        //     var total = 0;
+
+        //     for (var item of data) {
+        //         total += item.price;
+        //     }
+
+        //     console.log(total);
+        // }
+
+        // calculateSum();
+
+        class Car {
+            constructor(modelName, modelYear, type, price) {
+                this.modelName = modelName;
+                this.modelYear = modelYear;
+                this.type = type;
+                this.price = price;
+            }
+
+            getModelName() {
+                return this.modelName;
+            }
+
+            getModelYear() {
+                return this.modelYear;
+            }
+
+            getPrice() {
+                return this.price;
+            }
+
+            setPrice(price) {
+                this.price = price;
+            }
+        }
+
+        let car = new Car("ionic", "2021", "e", 4000);
+
+        console.log(car.getModelName());
+        console.log(car.getModelYear());
+        console.log(car.getPrice());
+
+        car.setPrice(4100);
+        console.log(car.getPrice());
+
+        let car2 = new Car("genesis", "2021", "g", 6500);
+        console.log(car2.getModelName());
+        console.log(car2.getModelYear());
+        console.log(car2.getPrice());
+
+        class ElectronicCar extends Car {
+            constructor(modelName, modelYear, price) {
+                super(modelName, modelYear, "e", price);
+                // this.chargeTime = chargeTime;
+            }
+
+            setChargeTime(time) {
+                this.chargeTime = time;
+            }
+
+            getChargeTime() {
+                return this.chargeTime;
+            }
+        }
+
+        let eleCar1 = new ElectronicCar("ionic5", "2021", 4000);
+        eleCar1.setChargeTime(60);
+        console.log(eleCar1.getModelName());
+        console.log(eleCar1.getChargeTime());
+
+        try {
+            consol.log("log메시지");
+        } catch (err) {
+            console.log(err.name);
+            console.log(err.message);
+        }
+
+        console.log("log 정상 메시지");
+
+        var x = 5;
+
+        try {
+            if (x == "") throw "empty";
+            var y = x + 3;
+            console.log(y);
+        } catch (err) {
+            console.log(`x is ${err}`);
+        } finally {
+            console.log("try/catch문 제일 마지막에 반드시 실행");
+        }
+
+        x = 3.14;
+
+        function myFunction() {
+            "use strict";
+
+            y = 2;
+        }
+
+        myFunction();
+
+        var patt = /World/i; //World - 패턴, i-modifier
+
+        var str = "Hello WORLD! world!";
+        console.log(str.search("World"));
+
+        console.log(str.search(/world/i));
+
+        console.log(str.replace("world", "Jeremy"));
+
+        console.log(str.replace(/world/ig, "Jeremy")); //g 
+
+        var str = "Is this all there is";
+        var patt1 = /[hat]/g; 
+        var result = str.match(patt1);
+        console.log(result);
+
+        var str = "123abc4523kkk";
+        var patt1 = /[0-9]/g;
+        var result = str.match(patt1);
+        console.log(result);
+
+        var str = "re, green, red, gree, gen, red,blue, yellow";
+        var patt1 = /(red|green)/g;
+        var result = str.match(patt1);
+        console.log(result);
+
+        var str = "Give 100";
+        var patt1 = /\d/g;
+        var result = str.match(patt1);
+        console.log(result);
+
+        var str = "HELLO, LOOK AT ME!";
+        var patt1 = /\bLO/g;
+        var result = str.search(patt1);
+        console.log(result);
+
+        var str = "Hellooo";
+        var patt1 = /o+/g;
+        console.log(str.match(patt1));
+
+        var str = "Hellooo World";
+        var patt1 = /lo*/g;
+        console.log(str.match(patt1));
+
+        var str = "1, 100 or 1000";
+        var patt1 = /10?/g;
+        console.log(str.match(patt1));
+
+        var patt1 = /^\d{5}$/;
+        var postalcode = "23452";
+        console.log(patt1.test(postalcode));
+
+        var patt1 = /^(010)-\d{4}-\d{4}$/;
+        var tel = "010-2312-3354";
+        console.log(patt1.test(tel));
+
+        var patt1 = /^\w+([\.-]?\w+)*@\w+(\.\w{2,3})+$/;
+        console.log(patt1.test("seungwon@gmail.co.kr"));
+
+    </script>
+    <!-- <script type="module">
+        import { log, error, PI } from "/scripts/3-13.module.js";
+        log(PI);
+        log("log로 메시지 출력");
+        error("error로 메시지 출력");
+
+    </script> -->
+</body>
+
+</html>
